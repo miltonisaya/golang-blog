@@ -15,6 +15,5 @@ func main() {
 	err := inits.DB.AutoMigrate(&models.Post{})
 	if err != nil {
 		log.Fatal(err)
-		return
 	}
 }
