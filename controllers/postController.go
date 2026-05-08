@@ -16,10 +16,18 @@ func CreatePost(ctx *gin.Context) {
 		Likes  int    `json:"likes"`
 		Draft  bool   `json:"draft"`
 		Author string `json:"author"`
+		UserID uint   `json:'user_id'`
 	}
 
+	user, exist := ctx.Get("user")
+	if !exist {
+		ctx.JSON(http.StatusUnauthorized, gin.H{"error": "User not found"})
+		return
+	}
+	body.UserID = user.(models.User).ID
+
 	ctx.BindJSON(&body)
-	post := models.Post{Title: body.Title, Body: body.Body, Likes: body.Likes, Author: body.Author}
+	post := models.Post{Title: body.Title, Body: body.Body, Likes: body.Likes, Author: body.Author, UserID: body.UserID}
 	fmt.Println(post)
 	result := inits.DB.Create(&post)
 	if result.Error != nil {
