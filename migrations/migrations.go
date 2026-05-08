@@ -12,7 +12,7 @@ func init() {
 }
 
 func main() {
-	err := inits.DB.AutoMigrate(&models.Post{})
+	err := inits.DB.AutoMigrate(&models.User{}, &models.Post{})
 	if err != nil {
 		log.Fatal(err)
 	}
