@@ -9,4 +9,5 @@ type Post struct {
 	Likes  int    `json:"likes"`
 	Draft  bool   `json:"draft"`
 	Author string `json:"author"`
+	UserID uint
 }
