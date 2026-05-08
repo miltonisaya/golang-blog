@@ -18,5 +18,6 @@ func main() {
 		})
 	})
 
+	inits.DBInit()
 	r.Run()
 }
